@@ -1,0 +1,197 @@
+:root {
+    --primary-green: #2ecc71;
+    --deep-earth: #0f110d;
+    --neon-leaf: #39ff14;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --bg-color: var(--deep-earth);
+    --text-main: #f0f0f0;
+    --text-muted: #9ca3af;
+    --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.light-mode {
+    --bg-color: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --glass: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Estilo Futurista de Cards */
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: var(--primary-green);
+    box-shadow: 0 30px 60px rgba(46, 204, 113, 0.15);
+}
+
+.light-mode .glass-card {
+    background: #ffffff;
+    border-color: #e2e8f0;
+}
+
+/* Animações Flutuantes */
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-delayed {
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(1deg);
+    }
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--text-main) 30%, var(--primary-green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.grid-pattern {
+    background-image: radial-gradient(rgba(46, 204, 113, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Botão Principal */
+.btn-agro {
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
+    color: white;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.btn-agro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.btn-agro:hover::before {
+    left: 100%;
+}
+
+.btn-agro:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(46, 204, 113, 0.4);
+}
+
+/* Tema Toggle */
+#themeToggle {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    z-index: 999;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid var(--primary-green);
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#themeToggle:hover {
+    transform: scale(1.15) rotate(15deg);
+}
+
+/* Scanning Line */
+.scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-leaf), transparent);
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    animation: scan 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scan {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+.source-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    margin-top: 8px;
+    display: inline-block;
+    color: var(--primary-green);
+    border-left: 2px solid var(--primary-green);
+    padding-left: 8px;
+}
+
+.nav-link.active {
+    color: var(--primary-green);
+    position: relative;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-green);
+    box-shadow: 0 0 10px var(--primary-green);
+}

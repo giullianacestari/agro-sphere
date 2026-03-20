@@ -1,181 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroSphere | Produção e Sustentabilidade</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-green: #2ecc71;
-            --deep-earth: #0f110d;
-            --neon-leaf: #39ff14;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --bg-color: var(--deep-earth);
-            --text-main: #f0f0f0;
-            --text-muted: #9ca3af;
-            --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .light-mode {
-            --bg-color: #f8fafc;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --glass: rgba(255, 255, 255, 0.8);
-            --glass-border: rgba(0, 0, 0, 0.05);
-            --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
-
-        /* Estilo Futurista de Cards */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            box-shadow: var(--card-shadow);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            border-color: var(--primary-green);
-            box-shadow: 0 30px 60px rgba(46, 204, 113, 0.15);
-        }
-
-        .light-mode .glass-card {
-            background: #ffffff;
-            border-color: #e2e8f0;
-        }
-
-        /* Animações Flutuantes */
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-delayed {
-            animation: float 8s ease-in-out infinite;
-            animation-delay: 1s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--text-main) 30%, var(--primary-green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .grid-pattern {
-            background-image: radial-gradient(rgba(46, 204, 113, 0.15) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        /* Botão Principal */
-        .btn-agro {
-            background: linear-gradient(90deg, #2ecc71, #27ae60);
-            color: white;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .btn-agro::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
-            z-index: -1;
-        }
-
-        .btn-agro:hover::before {
-            left: 100%;
-        }
-
-        .btn-agro:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(46, 204, 113, 0.4);
-        }
-
-        /* Tema Toggle */
-        #themeToggle {
-            position: fixed; bottom: 2.5rem; right: 2.5rem;
-            z-index: 999; width: 64px; height: 64px;
-            border-radius: 50%; display: flex;
-            align-items: center; justify-content: center;
-            cursor: pointer; border: 2px solid var(--primary-green);
-            background: var(--glass); backdrop-filter: blur(12px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        #themeToggle:hover {
-            transform: scale(1.15) rotate(15deg);
-        }
-
-        /* Scanning Line */
-        .scan-line {
-            position: absolute;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--neon-leaf), transparent);
-            top: 0; left: 0;
-            opacity: 0.5;
-            animation: scan 4s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes scan {
-            0% { top: 0; }
-            100% { top: 100%; }
-        }
-
-        .source-tag {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.7;
-            margin-top: 8px;
-            display: inline-block;
-            color: var(--primary-green);
-            border-left: 2px solid var(--primary-green);
-            padding-left: 8px;
-        }
-
-        .nav-link.active {
-            color: var(--primary-green);
-            position: relative;
-        }
-        
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 100%; height: 2px;
-            background: var(--primary-green);
-            box-shadow: 0 0 10px var(--primary-green);
-        }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="grid-pattern">
 
     <!-- Efeito de Scan Global -->
@@ -185,18 +21,25 @@
 
     <!-- Botão de Tema Flutuante -->
     <button id="themeToggle" onclick="toggleTheme()" aria-label="Alternar Tema">
-        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
         </svg>
-        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 hidden" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
         </svg>
     </button>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 py-6 px-10 flex justify-between items-center transition-all duration-300" id="mainNav">
+    <nav class="fixed top-0 w-full z-50 py-6 px-10 flex justify-between items-center transition-all duration-300"
+        id="mainNav">
         <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center font-black text-black shadow-[0_0_20px_rgba(46,204,113,0.4)]">AS</div>
+            <div
+                class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center font-black text-black shadow-[0_0_20px_rgba(46,204,113,0.4)]">
+                AS</div>
             <span class="text-2xl font-bold tracking-tighter">AGRO<span class="text-green-500">SPHERE</span></span>
         </div>
         <div class="hidden md:flex space-x-10 text-xs font-bold uppercase tracking-[0.2em]">
@@ -213,67 +56,79 @@
     <section id="home" class="min-h-screen flex flex-col justify-center items-center px-4 pt-20 relative">
         <div class="max-w-6xl w-full grid md:grid-cols-2 gap-16 items-center">
             <div class="space-y-10">
-                <div class="inline-flex items-center bg-green-500/10 border border-green-500/30 px-5 py-2 rounded-full backdrop-blur-md">
+                <div
+                    class="inline-flex items-center bg-green-500/10 border border-green-500/30 px-5 py-2 rounded-full backdrop-blur-md">
                     <span class="w-2 h-2 bg-green-500 rounded-full mr-3 animate-ping"></span>
-                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-green-500">Perspectiva Global 2026</span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-green-500">Perspectiva Global
+                        2026</span>
                 </div>
                 <h1 class="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter">
                     Produzir <br>
                     <span class="gradient-text">Regenerando.</span>
                 </h1>
                 <p class="text-xl text-muted max-w-lg leading-relaxed font-light">
-                    O desafio global de 2026: alimentar <strong>8,3 mil milhões</strong> de pessoas enquanto recuperamos 30% das terras degradadas. A tecnologia aliada à natureza é a nossa única rota.
+                    O desafio global de 2026: alimentar <strong>8,3 mil milhões</strong> de pessoas enquanto recuperamos
+                    30% das terras degradadas. A tecnologia aliada à natureza é a nossa única rota.
                 </p>
                 <div class="flex space-x-6">
-                    <button onclick="document.getElementById('dados').scrollIntoView({behavior: 'smooth'})" class="btn-agro px-10 py-5 rounded-2xl font-black shadow-xl">Explorar Dados Reais</button>
+                    <button onclick="document.getElementById('dados').scrollIntoView({behavior: 'smooth'})"
+                        class="btn-agro px-10 py-5 rounded-2xl font-black shadow-xl">Explorar Dados Reais</button>
                     <div class="flex flex-col justify-center">
                         <span class="source-tag">Fonte Primária: FAO (ONU)</span>
                     </div>
                 </div>
             </div>
-            
+
             <div class="hero-visual flex justify-center items-center relative">
                 <!-- Círculos de Brilho de Fundo -->
                 <div class="absolute w-64 h-64 bg-green-500/20 rounded-full blur-[100px] -z-10 animate-pulse"></div>
-                
+
                 <div class="glass-card p-10 w-full max-w-md relative floating">
                     <div class="scan-line opacity-20"></div>
                     <div class="flex justify-between items-start mb-8">
                         <div>
-                            <h3 class="text-green-500 font-black text-xs uppercase tracking-widest">Meta Global 2030</h3>
+                            <h3 class="text-green-500 font-black text-xs uppercase tracking-widest">Meta Global 2030
+                            </h3>
                             <p class="text-2xl font-bold">Progresso 2026</p>
                         </div>
                         <div class="p-2 bg-green-500/20 rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
                         </div>
                     </div>
-                    
+
                     <div class="space-y-8">
                         <div>
                             <div class="flex justify-between items-center mb-3">
-                                <span class="text-xs font-bold uppercase tracking-widest opacity-60">Restauração de Ecossistemas</span>
+                                <span class="text-xs font-bold uppercase tracking-widest opacity-60">Restauração de
+                                    Ecossistemas</span>
                                 <span class="text-sm font-mono text-green-400">18 / 30%</span>
                             </div>
                             <div class="w-full bg-white/5 h-3 rounded-full overflow-hidden border border-white/5">
-                                <div class="bg-gradient-to-r from-green-600 to-green-400 h-full rounded-full shadow-[0_0_15px_rgba(46,204,113,0.5)] transition-all duration-1000" style="width: 60%"></div>
+                                <div class="bg-gradient-to-r from-green-600 to-green-400 h-full rounded-full shadow-[0_0_15px_rgba(46,204,113,0.5)] transition-all duration-1000"
+                                    style="width: 60%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between items-center mb-3">
-                                <span class="text-xs font-bold uppercase tracking-widest opacity-60">Emissões Sector Agro</span>
+                                <span class="text-xs font-bold uppercase tracking-widest opacity-60">Emissões Sector
+                                    Agro</span>
                                 <span class="text-sm font-mono text-blue-400">-22.4%</span>
                             </div>
                             <div class="w-full bg-white/5 h-3 rounded-full overflow-hidden border border-white/5">
-                                <div class="bg-gradient-to-r from-blue-600 to-blue-400 h-full rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-1000" style="width: 45%"></div>
+                                <div class="bg-gradient-to-r from-blue-600 to-blue-400 h-full rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-1000"
+                                    style="width: 45%"></div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mt-10 pt-8 border-t border-white/10">
                         <p class="text-[11px] leading-relaxed opacity-60 italic">
-                            "A tecnologia de Intensificação Sustentável no Brasil (Plano ABC+) evitou a abertura de 30M de hectares em 2025." 
+                            "A tecnologia de Intensificação Sustentável no Brasil (Plano ABC+) evitou a abertura de 30M
+                            de hectares em 2025."
                         </p>
                         <span class="source-tag">Referência: Embrapa Territorial</span>
                     </div>
@@ -287,37 +142,45 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                 <div class="max-w-2xl">
-                    <h2 class="text-5xl font-black mb-6 tracking-tighter">Impacto em <span class="text-green-500">Tempo Real.</span></h2>
-                    <p class="text-muted text-lg">Métricas validadas por satélite e sensores IoT que demonstram a viabilidade económica da sustentabilidade.</p>
+                    <h2 class="text-5xl font-black mb-6 tracking-tighter">Impacto em <span class="text-green-500">Tempo
+                            Real.</span></h2>
+                    <p class="text-muted text-lg">Métricas validadas por satélite e sensores IoT que demonstram a
+                        viabilidade económica da sustentabilidade.</p>
                 </div>
                 <div class="bg-green-500/5 border border-green-500/20 p-4 rounded-2xl flex items-center space-x-4">
                     <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                     <span class="text-[10px] font-black uppercase tracking-widest">Live: Monitoramento COP-30</span>
                 </div>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <div class="glass-card p-12 floating-delayed group">
                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3" />
+                        </svg>
                     </div>
                     <h4 class="text-6xl font-black mb-4 text-green-500 tracking-tighter">100Mt</h4>
                     <p class="text-sm font-black uppercase tracking-widest mb-4">CO2eq Retidos no Solo</p>
-                    <p class="text-xs text-muted leading-relaxed mb-6">Volume acumulado via plantio direto e recuperação de pastagens degradadas.</p>
+                    <p class="text-xs text-muted leading-relaxed mb-6">Volume acumulado via plantio direto e recuperação
+                        de pastagens degradadas.</p>
                     <span class="source-tag">Fonte: MAPA / Plano ABC+ 2025</span>
                 </div>
-                
+
                 <div class="glass-card p-12 floating group">
                     <h4 class="text-6xl font-black mb-4 text-blue-400 tracking-tighter">30%</h4>
                     <p class="text-sm font-black uppercase tracking-widest mb-4">Restauração Ativa</p>
-                    <p class="text-xs text-muted leading-relaxed mb-6">Meta alcançada em biomas críticos para manutenção de serviços ecossistémicos.</p>
+                    <p class="text-xs text-muted leading-relaxed mb-6">Meta alcançada em biomas críticos para manutenção
+                        de serviços ecossistémicos.</p>
                     <span class="source-tag">Meta ONU Kunming-Montreal 2026</span>
                 </div>
-                
+
                 <div class="glass-card p-12 floating-delayed group">
                     <h4 class="text-6xl font-black mb-4 text-purple-400 tracking-tighter">+18%</h4>
                     <p class="text-sm font-black uppercase tracking-widest mb-4">Eficiência Hídrica</p>
-                    <p class="text-xs text-muted leading-relaxed mb-6">Aumento da produtividade por m³ de água através de agricultura de precisão.</p>
+                    <p class="text-xs text-muted leading-relaxed mb-6">Aumento da produtividade por m³ de água através
+                        de agricultura de precisão.</p>
                     <span class="source-tag">Relatório Mundial da Água 2026</span>
                 </div>
             </div>
@@ -327,45 +190,60 @@
     <!-- Equilíbrio Futurista -->
     <section id="equilibrio" class="py-32 px-10 relative overflow-hidden">
         <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-green-500/10 rounded-full blur-[120px]"></div>
-        
+
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-24 items-center">
             <div class="relative order-2 md:order-1">
                 <div class="glass-card p-4 aspect-square flex items-center justify-center relative z-10">
-                    <div class="w-full h-full bg-gradient-to-br from-green-500/20 to-transparent rounded-3xl flex flex-col items-center justify-center p-12 text-center">
-                        <div class="w-32 h-32 bg-green-500 rounded-2xl flex items-center justify-center shadow-[0_0_40px_rgba(46,204,113,0.4)] mb-8 transform rotate-12 floating">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-black -rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    <div
+                        class="w-full h-full bg-gradient-to-br from-green-500/20 to-transparent rounded-3xl flex flex-col items-center justify-center p-12 text-center">
+                        <div
+                            class="w-32 h-32 bg-green-500 rounded-2xl flex items-center justify-center shadow-[0_0_40px_rgba(46,204,113,0.4)] mb-8 transform rotate-12 floating">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-black -rotate-12" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                             </svg>
                         </div>
                         <h3 class="text-3xl font-black mb-6">Soberania Regenerativa</h3>
-                        <p class="text-muted leading-relaxed italic">"A regeneração do solo é a tecnologia mais avançada de sequestro de carbono que possuímos."</p>
+                        <p class="text-muted leading-relaxed italic">"A regeneração do solo é a tecnologia mais avançada
+                            de sequestro de carbono que possuímos."</p>
                         <p class="mt-4 font-bold text-green-500">— IPCC Sixth Assessment, 2025.</p>
                     </div>
                 </div>
                 <!-- Elemento Decorativo Geométrico -->
-                <div class="absolute -top-10 -right-10 w-40 h-40 border-2 border-green-500/20 rounded-full animate-spin-slow"></div>
+                <div
+                    class="absolute -top-10 -right-10 w-40 h-40 border-2 border-green-500/20 rounded-full animate-spin-slow">
+                </div>
             </div>
-            
+
             <div class="space-y-10 order-1 md:order-2">
                 <div class="space-y-4">
-                    <h2 class="text-6xl font-black leading-none tracking-tighter">O Próximo <span class="text-green-500">Upgrade</span> do Agro.</h2>
-                    <p class="text-xl text-muted font-light">Em 2026, a produção eficiente e a proteção ambiental são indissociáveis.</p>
+                    <h2 class="text-6xl font-black leading-none tracking-tighter">O Próximo <span
+                            class="text-green-500">Upgrade</span> do Agro.</h2>
+                    <p class="text-xl text-muted font-light">Em 2026, a produção eficiente e a proteção ambiental são
+                        indissociáveis.</p>
                 </div>
-                
+
                 <div class="grid gap-8">
                     <div class="glass-card p-8 flex space-x-6 items-start hover:bg-green-500/5 transition-colors">
-                        <div class="w-12 h-12 bg-green-500/10 rounded-xl flex-shrink-0 flex items-center justify-center text-green-500 font-black">01</div>
+                        <div
+                            class="w-12 h-12 bg-green-500/10 rounded-xl flex-shrink-0 flex items-center justify-center text-green-500 font-black">
+                            01</div>
                         <div>
                             <h4 class="text-lg font-bold mb-2">Integração Total (ILPF)</h4>
-                            <p class="text-sm text-muted leading-relaxed">Sistemas que combinam lavoura, pecuária e floresta na mesma área, maximizando o uso da terra e o conforto térmico animal.</p>
+                            <p class="text-sm text-muted leading-relaxed">Sistemas que combinam lavoura, pecuária e
+                                floresta na mesma área, maximizando o uso da terra e o conforto térmico animal.</p>
                         </div>
                     </div>
-                    
+
                     <div class="glass-card p-8 flex space-x-6 items-start hover:bg-blue-500/5 transition-colors">
-                        <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex-shrink-0 flex items-center justify-center text-blue-500 font-black">02</div>
+                        <div
+                            class="w-12 h-12 bg-blue-500/10 rounded-xl flex-shrink-0 flex items-center justify-center text-blue-500 font-black">
+                            02</div>
                         <div>
                             <h4 class="text-lg font-bold mb-2">Inteligência de Insumos</h4>
-                            <p class="text-sm text-muted leading-relaxed">Bioinsumos e microbiologia do solo substituindo químicos tradicionais em 25% da área produtiva global em 2026.</p>
+                            <p class="text-sm text-muted leading-relaxed">Bioinsumos e microbiologia do solo
+                                substituindo químicos tradicionais em 25% da área produtiva global em 2026.</p>
                         </div>
                     </div>
                 </div>
@@ -378,17 +256,19 @@
         <div class="max-w-4xl mx-auto space-y-8">
             <div class="flex justify-center items-center space-x-4 mb-10">
                 <div class="h-px bg-white/10 w-24"></div>
-                <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Entidades Colaboradoras</span>
+                <span class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Entidades
+                    Colaboradoras</span>
                 <div class="h-px bg-white/10 w-24"></div>
             </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+
+            <div
+                class="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
                 <div class="font-black text-xs">UN-FAO</div>
                 <div class="font-black text-xs">EMBRAPA</div>
                 <div class="font-black text-xs">IPCC-UN</div>
                 <div class="font-black text-xs">MAPA-ABC+</div>
             </div>
-            
+
             <div class="pt-10">
                 <p class="text-[10px] text-muted leading-relaxed max-w-lg mx-auto uppercase tracking-widest">
                     Consolidação Técnica de Dados v4.2.0-2026. <br>
@@ -398,80 +278,7 @@
         </div>
     </footer>
 
-    <script>
-        // Função de troca de tema com transição suave
-        function toggleTheme() {
-            const body = document.body;
-            const moon = document.getElementById('moonIcon');
-            const sun = document.getElementById('sunIcon');
-            
-            body.classList.toggle('light-mode');
-            
-            if (body.classList.contains('light-mode')) {
-                moon.classList.add('hidden');
-                sun.classList.remove('hidden');
-            } else {
-                sun.classList.add('hidden');
-                moon.classList.remove('hidden');
-            }
-        }
-
-        // Navbar Dinâmica e Scroll Spy
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('mainNav');
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            if (window.scrollY > 80) {
-                nav.style.padding = '1rem 2.5rem';
-                nav.style.backgroundColor = document.body.classList.contains('light-mode') 
-                    ? 'rgba(255, 255, 255, 0.95)' 
-                    : 'rgba(15, 17, 13, 0.95)';
-                nav.classList.add('shadow-2xl', 'backdrop-blur-xl');
-            } else {
-                nav.style.padding = '1.5rem 2.5rem';
-                nav.style.backgroundColor = 'transparent';
-                nav.classList.remove('shadow-2xl', 'backdrop-blur-xl');
-            }
-
-            // Scroll Spy Logic
-            let current = "";
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 250)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Efeito Parallax suave nos cards ao mover o rato (opcional, para mais imersão)
-        document.querySelectorAll('.glass-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                if (window.innerWidth < 768) return;
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
